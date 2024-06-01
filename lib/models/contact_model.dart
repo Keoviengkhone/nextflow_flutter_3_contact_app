@@ -6,4 +6,11 @@ class ContactModel {
     this.name,
     this.email,
   );
+
+  Map<String, dynamic> toJson() {
+    return {
+      'name': name,
+      'email': email,
+    };
+  }
 }
