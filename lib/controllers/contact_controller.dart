@@ -16,6 +16,9 @@ class ContactController extends GetxController {
 
   void addContact(ContactModel contact) {
     contacts.add(contact);
+    _database!.insert('contacts', contact.toJson());
+  }
+
   }
 
   Future<void> _initDatabase() async {
