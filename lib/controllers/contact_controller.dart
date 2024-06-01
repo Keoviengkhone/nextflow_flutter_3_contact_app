@@ -8,6 +8,12 @@ class ContactController extends GetxController {
   final contacts = <ContactModel>[].obs;
   Database? _database;
 
+  @override
+  void onInit() {
+    super.onInit();
+    _initDatabase();
+  }
+
   void addContact(ContactModel contact) {
     contacts.add(contact);
   }
