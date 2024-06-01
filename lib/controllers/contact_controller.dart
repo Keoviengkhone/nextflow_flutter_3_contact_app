@@ -19,6 +19,16 @@ class ContactController extends GetxController {
     _database!.insert('contacts', contact.toJson());
   }
 
+  Future<void> loadContacts() async {
+    if (_database == null) await _initDatabase();
+
+    final dbContacts = await _database!.query('contacts');
+    contacts.value = dbContacts.map((dbContact) {
+      return ContactModel(
+        dbContact['name'] as String,
+        dbContact['email'] as String,
+      );
+    }).toList();
   }
 
   Future<void> _initDatabase() async {

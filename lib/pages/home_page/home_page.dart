@@ -9,6 +9,8 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    contactController.loadContacts();
+
     return Scaffold(
       appBar: AppBar(
         title: Text('Home'),
