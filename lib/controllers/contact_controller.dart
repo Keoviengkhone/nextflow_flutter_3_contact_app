@@ -5,6 +5,9 @@ import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
 
 class ContactController extends GetxController {
+  String name = '';
+  String email = '';
+  var warningMessage = '...'.obs;
   final contacts = <ContactModel>[].obs;
   Database? _database;
 
@@ -14,9 +17,27 @@ class ContactController extends GetxController {
     _initDatabase();
   }
 
-  void addContact(ContactModel contact) {
-    contacts.add(contact);
-    _database!.insert('contacts', contact.toJson());
+  void save() {
+    print('name: ${name}');
+    print('email: ${email}');
+
+    if (name.isEmpty || email.isEmpty) {
+      warningMessage.value = 'please fill the form';
+      print(warningMessage);
+    } else {
+      var newContact = ContactModel(
+        name,
+        email,
+      );
+      contacts.add(newContact);
+
+      _database?.insert(
+        'contacts',
+        newContact.toJson(),
+      );
+
+      Get.back();
+    }
   }
 
   Future<void> loadContacts() async {
