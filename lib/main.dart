@@ -15,11 +15,7 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    Get.lazyPut(
-      () {
-        return ContactController();
-      },
-    );
+    Get.put(ContactController());
 
     return GetMaterialApp(
       title: 'Nextflow Contact App',
